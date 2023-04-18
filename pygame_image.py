@@ -8,8 +8,10 @@ def main():
     bg_img = pg.image.load("ex01/fig/pg_bg.jpg")
     koka_img = pg.image.load("ex01/fig/3.png")
     koka_rev = pg.transform.flip(koka_img, True, False)
+    koka_25 = pg.transform.rotozoom(koka_rev, 2.5, 1.0)
+    koka_50 = pg.transform.rotozoom(koka_rev, 5.0, 1.0)
     koka_10 = pg.transform.rotozoom(koka_rev, 10, 1.0)
-    koka_byousha = [koka_rev, koka_10]
+    koka_byousha = [koka_rev, koka_25, koka_50, koka_10, koka_50, koka_25]
 
     tmr = 0
     x = 0
@@ -22,16 +24,24 @@ def main():
         tmr += 1
         if x>=1599:
             x=0
-        if y>=100:
+        if y>=120:
             y=0
         x+=1
         y+=1
         screen.blit(bg_img, [-x,0])
         screen.blit(bg_img,[1600-x,0])
-        if y<=49:
+        if y<=19:
             screen.blit(koka_byousha[0], [300, 200])
-        if y>=50:
+        elif y<=39:
             screen.blit(koka_byousha[1], [300, 200])
+        elif y<=59:
+            screen.blit(koka_byousha[2], [300, 200])
+        elif y<=79:
+            screen.blit(koka_byousha[3], [300, 200])
+        elif y<=99:
+            screen.blit(koka_byousha[4], [300, 200])
+        elif y>=100:
+            screen.blit(koka_byousha[5], [300, 200])
 
 
         pg.display.update()
